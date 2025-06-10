@@ -11,11 +11,14 @@ namespace Malshinon
     {
         static void Main(string[] args)
         {
+
+            ReportDAL.AddReport(4, 5, "lllllllllllll");
             //PersonDAL.UpdateType(4, "both");
             int a = PersonDAL.GetPersonId("matt", "rosenfeld");
             Console.WriteLine(a);
             Person p = PersonDAL.GetPerson(a);
             Console.WriteLine(p.SecretCode);
+
 
 
 

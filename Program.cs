@@ -10,6 +10,7 @@ namespace Malshinon
     {
         static void Main(string[] args)
         {
+            ReportDAL.AddReport(4, 5, "lllllllllllll");
         }
     }
 }

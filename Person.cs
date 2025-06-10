@@ -12,17 +12,17 @@ namespace Malshinon
         internal string FirstName;
         internal string LastName;
         internal string SecretCode;
-        internal string Tipe;
+        internal string Type;
         internal int NumReports;
         internal int NumMentions;
 
-        public Person(int id, string firstName, string lastName, string secretCode, string tipe, int numReports, int numMentions)
+        public Person(int id, string firstName, string lastName, string secretCode, string type, int numReports, int numMentions)
         {
             Id = id;
             FirstName = firstName;
             LastName = lastName;
             SecretCode = secretCode;
-            Tipe = tipe;
+            Type = type;
             NumReports = numReports;
             NumMentions = numMentions;
         }

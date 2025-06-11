@@ -13,6 +13,7 @@ namespace Malshinon
         {
 
             Handler.Menu();
+
         }
     }
 }

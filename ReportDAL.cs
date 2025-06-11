@@ -74,5 +74,39 @@ namespace Malshinon
             return 0;
         }
 
+
+        public static int CheckInLast15Min(int id)
+        {
+            string connstring = "Server=127.0.0.1; database=malshinon; UID=root; password=";
+            string query = "SELECT ///  FROM intelreports WHERE reporter_id = @personId";
+            try
+            {
+                using (var connection = new MySqlConnection(connstring))
+                {
+                    connection.Open();
+                    var cmd = new MySqlCommand(query, connection);
+
+                    cmd.Parameters.AddWithValue("@personId", id);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int average = reader.GetInt32("");
+                            return average;
+                        }
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine("MySQL Error: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("General Error: " + ex.Message);
+            }
+            return 0;
+        }
     }
 }

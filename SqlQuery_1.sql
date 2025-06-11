@@ -21,3 +21,11 @@ CREATE TABLE IF NOT EXISTS IntelReports(
     FOREIGN KEY(reporter_id) REFERENCES People(id),
     FOREIGN KEY(target_id) REFERENCES People(id)
 ); 
+
+CREATE TABLE IF NOT EXISTS Alerts(
+	id INT AUTO_INCREMENT PRIMARY KEY, 
+    target_id INT NOT NULL,
+    timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+    reason VARCHAR(256) NOT NULL,
+    FOREIGN KEY(target_id) REFERENCES People(id)
+); 

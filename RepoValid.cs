@@ -35,6 +35,4 @@ namespace Malshinon
             return counter == 2 ? names : null;
         }
     }
-
-
 }

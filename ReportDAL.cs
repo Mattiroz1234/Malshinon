@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -27,6 +27,7 @@ namespace Malshinon
                     
                     cmd.ExecuteNonQuery();
                 }
+                Console.WriteLine("A new report has been created.");
             }
             catch (MySqlException ex)
             {
@@ -36,6 +37,41 @@ namespace Malshinon
             {
                 Console.WriteLine("General Error: " + ex.Message);
             }
+        }
+
+
+        public static int GetAverage(int id)
+        {
+            string connstring = "Server=127.0.0.1; database=malshinon; UID=root; password=";
+            string query = "SELECT AVG (LENGTH (text)) AS av FROM intelreports WHERE reporter_id = @personId";
+            try
+            {
+                using (var connection = new MySqlConnection(connstring))
+                {
+                    connection.Open();
+                    var cmd = new MySqlCommand(query, connection);
+
+                    cmd.Parameters.AddWithValue("@personId", id);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int average = reader.GetInt32("av");
+                            return average;
+                        }
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine("MySQL Error: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("General Error: " + ex.Message);
+            }
+            return 0;
         }
 
     }

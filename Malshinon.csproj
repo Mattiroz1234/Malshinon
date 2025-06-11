@@ -95,12 +95,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Handler.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="PersonDAL.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Report.cs" />
     <Compile Include="ReportDAL.cs" />
+    <Compile Include="RepoValid.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

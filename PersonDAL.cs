@@ -111,6 +111,7 @@ namespace Malshinon
                     //using (var reader = cmd.ExecuteReader()) ;
                     cmd.ExecuteNonQuery();
                 }
+                Console.WriteLine("A new person is added.");
             }
             catch (MySqlException ex)
             {
@@ -141,6 +142,7 @@ namespace Malshinon
                     //using (var reader = cmd.ExecuteReader()) ;
                     cmd.ExecuteNonQuery();
                 }
+                Console.WriteLine("The type of person has been updated.");
             }
             catch (MySqlException ex)
             {

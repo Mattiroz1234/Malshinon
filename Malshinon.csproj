@@ -95,16 +95,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Alert.cs" />
-    <Compile Include="AlertDAL.cs" />
-    <Compile Include="Handler.cs" />
-    <Compile Include="Person.cs" />
-    <Compile Include="PersonDAL.cs" />
+    <Compile Include="Management\AdminOptions.cs" />
+    <Compile Include="models\Alert.cs" />
+    <Compile Include="dal\AlertDAL.cs" />
+    <Compile Include="Management\ReportHandler.cs" />
+    <Compile Include="Management\MainMenu.cs" />
+    <Compile Include="models\Person.cs" />
+    <Compile Include="dal\PersonDAL.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Report.cs" />
-    <Compile Include="ReportDAL.cs" />
-    <Compile Include="RepoValid.cs" />
+    <Compile Include="models\Report.cs" />
+    <Compile Include="dal\ReportDAL.cs" />
+    <Compile Include="Management\RepoValid.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

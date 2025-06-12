@@ -8,10 +8,11 @@ using Org.BouncyCastle.Ocsp;
 
 namespace Malshinon
 {
-    internal class Handler 
+    internal class ReportHandler 
     {
-        public static void Menu()
+        public static void ReporterMenu()
         {
+            Console.Clear();
             Console.WriteLine("enter your first name: ");
             string firstName = Console.ReadLine();
             Console.WriteLine("enter your last name: ");
@@ -107,7 +108,7 @@ namespace Malshinon
 
         private static void CreateAlerts(Person tar)
         {
-            if (tar.NumMentions < 20)
+            if (tar.NumMentions > 20)
             {
                 AlertDAL.AddAlert(tar.Id, "It has more than 20 reports.");
             }

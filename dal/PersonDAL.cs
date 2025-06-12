@@ -211,5 +211,40 @@ namespace Malshinon
                 Console.WriteLine("General Error: " + ex.Message);
             }
         }
+
+
+        public static void GetPotentialAgents()
+        {
+            string connstring = "Server=127.0.0.1; database=malshinon; UID=root; password=";
+            string query = "SELECT id, `num_reports` FROM people WHERE type = 'potential agents'";
+            try
+            {
+                using (var connection = new MySqlConnection(connstring))
+                {
+                    connection.Open();
+                    var cmd = new MySqlCommand(query, connection);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int id = reader.GetInt32("id");
+                            int numRepo = reader.GetInt32("num_reports");
+                            int avgRepo = ReportDAL.GetAverage(id);
+
+                            Console.WriteLine($"potential agent id: {id} has {numRepo} reports whose average is: {avgRepo}.");
+                        }
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine("MySQL Error: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("General Error: " + ex.Message);
+            }
+        }
     }
 }

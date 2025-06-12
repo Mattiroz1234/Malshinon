@@ -11,9 +11,7 @@ namespace Malshinon
     {
         static void Main(string[] args)
         {
-
-            Handler.Menu();
-
+            MainMenu.Menu();
         }
     }
 }

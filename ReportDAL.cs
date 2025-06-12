@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Google.Protobuf.WellKnownTypes;
 using MySql.Data.MySqlClient;
 
 namespace Malshinon
@@ -77,8 +78,8 @@ namespace Malshinon
 
         public static int CheckInLast15Min(int id)
         {
-            string connstring = "Server=127.0.0.1; database=malshinon; UID=root; password=";
-            string query = "SELECT ///  FROM intelreports WHERE reporter_id = @personId";
+            string connstring = "Server=127.0.0.1; database=malshinon; UID=root; password=";  
+            string query = "SELECT COUNT(*) AS cou FROM intelreports WHERE target_id = @personId AND timestamp BETWEEN NOW() - INTERVAL 15 MINUTE AND NOW()";
             try
             {
                 using (var connection = new MySqlConnection(connstring))
@@ -92,8 +93,8 @@ namespace Malshinon
                     {
                         while (reader.Read())
                         {
-                            int average = reader.GetInt32("");
-                            return average;
+                            int counter = reader.GetInt32("cou");
+                            return counter;
                         }
                     }
                 }

@@ -107,7 +107,7 @@ namespace Malshinon
 
         private static void CreateAlerts(Person tar)
         {
-            if (tar.NumMentions == 20)
+            if (tar.NumMentions < 20)
             {
                 AlertDAL.AddAlert(tar.Id, "It has more than 20 reports.");
             }

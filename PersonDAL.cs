@@ -46,6 +46,7 @@ namespace Malshinon
             return 0;
         }
 
+
         public static Person GetPerson(int perId)
         {
             string connstring = "Server=127.0.0.1; database=malshinon; UID=root; password=";
@@ -88,7 +89,6 @@ namespace Malshinon
             }
             return person;
         }
-
 
 
         public static void AddPerson(string firstName, string lastName, string type)

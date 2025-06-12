@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Google.Protobuf.WellKnownTypes;
 using MySql.Data.MySqlClient;
 
 namespace Malshinon
@@ -74,5 +75,39 @@ namespace Malshinon
             return 0;
         }
 
+
+        public static int CheckInLast15Min(int id)
+        {
+            string connstring = "Server=127.0.0.1; database=malshinon; UID=root; password=";  
+            string query = "SELECT COUNT(*) AS cou FROM intelreports WHERE target_id = @personId AND timestamp BETWEEN NOW() - INTERVAL 15 MINUTE AND NOW()";
+            try
+            {
+                using (var connection = new MySqlConnection(connstring))
+                {
+                    connection.Open();
+                    var cmd = new MySqlCommand(query, connection);
+
+                    cmd.Parameters.AddWithValue("@personId", id);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int counter = reader.GetInt32("cou");
+                            return counter;
+                        }
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine("MySQL Error: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("General Error: " + ex.Message);
+            }
+            return 0;
+        }
     }
 }

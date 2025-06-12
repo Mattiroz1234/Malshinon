@@ -8,7 +8,7 @@ using Org.BouncyCastle.Ocsp;
 
 namespace Malshinon
 {
-    internal class Handler
+    internal class Handler 
     {
         public static void Menu()
         {
@@ -43,7 +43,10 @@ namespace Malshinon
 
             UpdateDetails(reporter, target);
 
+            CreateAlerts(target);
+
         }
+
 
         private static int IdReq(string firstName, string lastName, string type)
         {
@@ -55,6 +58,7 @@ namespace Malshinon
             }
             return id;
         }
+
 
         private static void UpdateDetails(Person rep, Person tar)
         {
@@ -72,7 +76,6 @@ namespace Malshinon
             PersonDAL.UpdateMentionsNum(tar.Id);
 
             CheckType(rep);
-            
         }
 
 
@@ -98,6 +101,20 @@ namespace Malshinon
                         PersonDAL.UpdateType(rep.Id, "reporter");
                     }
                 }
+            }
+        }
+
+
+        private static void CreateAlerts(Person tar)
+        {
+            if (tar.NumMentions < 20)
+            {
+                AlertDAL.AddAlert(tar.Id, "It has more than 20 reports.");
+            }
+
+            if (ReportDAL.CheckInLast15Min(tar.Id) >= 3)
+            {
+                AlertDAL.AddAlert(tar.Id, "Rapid reports detected.");
             }
         }
     }
